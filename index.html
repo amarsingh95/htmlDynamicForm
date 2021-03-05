@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form in HTML</title>
+</head>
+<body>
+    <div>
+          <div id="dynamic">
+
+          </div>
+          <button onclick="addMoreItem();">Add more</button>
+    </div>  
+    
+    <script>
+        let user=[];
+        let dynamic=document.querySelector("#dynamic");
+        
+        ///On Page load call addmore to load first input 
+        addMoreItem();
+        
+        ///As more object is added to array input is added in DOM 
+        function addMoreItem()
+        {
+            user.push({firstname:"",lastname:"",email:""});
+            let str=``;
+            user.map((data,i)=>{
+                str+=`
+                <div>
+                <input type="text" name="firstname" onchange="handleChange(this,${i});" placeholder="Firstname" value="${data.firstname}" />
+                <input type="text" name="lastname" onchange="handleChange(this,${i});" placeholder="Lastname" value="${data.lastname}" />
+                <input type="text" name="email" onchange="handleChange(this,${i});" placeholder="Email"  value="${data.email}" />
+                </div>
+                `;
+            });
+            dynamic.innerHTML=str;
+            
+            
+        }
+
+
+        ///Update Object Array on change event
+        function handleChange(element,indexA)
+        {
+            if(element.name=="firstname" )
+            {
+                user[indexA]['firstname']=element.value;
+            }
+
+            if(element.name=="lastname")
+            {
+                user[indexA]['lastname']=element.value;
+            }
+
+            if(element.name=="email")
+            {
+                user[indexA]['email']=element.value; 
+            }
+
+           
+            console.log(user[indexA]);
+            console.log(user);
+            console.log( indexA);
+        }
+
+
+    </script>
+</body>
+</html>
