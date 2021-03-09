@@ -44,21 +44,9 @@
         ///Update Object Array on change event
         function handleChange(element,indexA)
         {
-            if(element.name=="firstname" )
-            {
-                user[indexA]['firstname']=element.value;
-            }
 
-            if(element.name=="lastname")
-            {
-                user[indexA]['lastname']=element.value;
-            }
-
-            if(element.name=="email")
-            {
-                user[indexA]['email']=element.value; 
-            }
-
+    
+            user[indexA]=Object.assign(user[indexA],{[element.name]:element.value});
            
             console.log(user[indexA]);
             console.log(user);
